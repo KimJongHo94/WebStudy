@@ -1,0 +1,12 @@
+임포트해서 standard1.epf  파일 불러오면 서버에서 톰캣 서버 구성하고 스타트하면 톰캣 서버 오른쪽눌러서
+add and remove 를 클릭해서 새로 만든 webapp01을 add 한다.
+
+webcontent 오른쪽클릭 해서 새로운 html 파일 클릭
+html5 선택해서 만든다
+
+상단 메뉴바에서 window 클릭해서 web browser 를 chrome 으로 설정
+
+컨트롤 11 눌러서 서버로 실행하면 된다.
+
+cafe24
+
