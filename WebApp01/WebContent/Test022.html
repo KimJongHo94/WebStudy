@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+	<h1>체크박스 만들기</h1>
+	<hr/>
+</div>
+
+<div>
+
+	<!-- 체크박스는 다중선택이 가능하다 
+	     name 속성이 통일해야 다중값으로 처리하는 것이 가능하다
+	     name 속성이 값이 각각 다르면 독립적인 별도의 값으로 처리를 할 수 밖에 없어진다.
+	     밥, 미역국으로 서버 처리를 하는게 아니라 value 값으로 처리를 해야 한다.
+	 -->
+
+	<form>
+		<p>오늘 점심으로 먹고싶은 메뉴는?</p>
+		
+		<input type="checkbox" name="foodSelect" value="1" id="label1">
+		<label for="label1">밥</label>
+		
+		<label>
+		<input type="checkbox" name="foodSelect" value="2" id="label2">미역국
+		</label>
+		
+		<input type="checkbox" name="foodSelect" value="3" id="label3">김치찌개
+		
+		<input type="checkbox" name="foodSelect" value="4" id="label4" checked>계란말이
+		
+		<input type="checkbox" name="foodSelect" value="5" id="label5">장조림
+		
+		<input type="checkbox" name="foodSelect" value="6" id="label6"> 
+				
+		<br><br><br><br>
+		
+		<label for="label6">김</label>
+	</form>
+</div>
+
+</body>
+</html>
