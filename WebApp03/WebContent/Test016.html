@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test016.html</title>
+<style type="text/css">
+	* {color: #223322;}
+	input:focus {font-family: 나눔고딕코딩; font-weight: bold;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:bover {color: orange;}
+	td {text-align: center;}
+	.txtName {text-align: center;}
+	.txtScore {text-align: right;}
+</style>
+<script type="text/javascript">
+/* 내 풀이
+	function myCalc()
+	{
+		//이름,국어점수,영어점수,수학점수
+		var vResult = 0;
+		var vAvg = 0;
+		var jResult ="합격";
+		var vkor = document.getElementById("kor").value;
+		var veng = document.getElementById("eng").value;
+		var vmat = document.getElementById("mat").value;
+		
+		vResult = parseInt(vkor)+parseInt(veng)+parseInt(vmat);
+		
+		vAvg = vResult / 3;
+		
+		if(vAvg >= 60)
+		{
+			if((vkor< 40 || veng < 40)|| vmat < 40)
+			{
+				jResult="과락";
+			}
+		}
+		else
+			jResult ="불합격";
+		
+	
+	
+	document.getElementById("avg").value = vAvg;
+	document.getElementById("result").value = jResult;
+	}
+*/
+	//선생님 풀이
+	function actionPerformed()
+	{
+		//alert("함수 호출 확인");
+		
+		var korStr = document.getElementById("kor").value;
+		var nKor = parseInt(korStr);
+		var engStr = document.getElementById("eng").value;
+		var nEng = parseInt(engStr);
+		var matStr = document.getElementById("mat").value;
+		var nMat = parseInt(matStr);
+		
+		var nTot = 0;		//총점
+		var nAvg = 0;		//평균
+		var panStr ="";		//판정결과
+		
+		nTot = nKor + nEng + nMat;
+		nAvg = Math.round(nTot/3);			//Math의 round함수
+		
+		document.getElementById("avg").value = nAvg;
+		
+		if(nKor>=40 && nEng >=40 && nMat>=40 && nAvg>=60)
+			panStr = "합격";
+		else if(nAvg>=60)
+			panStr = "과락";
+		else
+			panStr ="불합격";
+		
+		document.getElementById("pan").value = panStr;
+		
+
+	}
+</script>
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!-- 
+	사용자로부터 이름,국어점수,영어점수,수학점수를 입력받아
+	평균점수와 판정결과를 출력하는 페이지를 구성한다.
+	판정결과는 합격,과락,불학격 중 하나로 처리한다.
+	
+	합격은 모든 과목 점수가 40점 이상이면서 평균 60점이상인 경우
+	과락은 평균이 60점 이상이지만 한 과목이라도 과목 점수가
+	40점 미만의 과목이 존재하는 경우
+	불합격은 평균이 60점 미만인 경우로 처리한다.
+	(정보처리기사 / 정보처리산업기사 합격 기준과 동일)
+	
+	HTML,CSS,JavaScript 활용
+	
+	페이지 레이아웃
+	------------------------------------------------------------
+	이름		[    ]
+	국어점수	[    ]
+	영어점수	[    ]
+	수학점수	[    ]
+	
+	<처리결과 확인>
+	
+	평균점수	판정결과
+	[      ]    [      ]
+	------------------------------------------------------------
+ -->
+ 
+<div>
+	<table>
+	<tr>
+		<td>이름</td>
+		<td><input type="text" id="name" style="width:80px;"></td>
+	</tr>
+	<tr>
+		<td>국어점수</td>
+		<td><input type="text" id="kor" style="width:80px;"></td>
+	</tr>
+	<tr>
+		<td>영어점수</td>
+		<td><input type="text" id="eng" style="width:80px;"></td>
+	</tr>
+	<tr>
+		<td>수학점수</td>
+		<td><input type="text" id="mat" style="width:80px;"></td>
+	</tr>
+	</table>
+</div>
+
+<div>
+ <input type="button" id="btnResult" class="btn" value="<처리결과 확인>"  onclick="myCalc()">
+	<table>
+	<tr>
+		<td> 평균점수</td>
+		<td> 판정결과</td>
+	</tr>
+	<tr>
+		<td><input type="text" id="avg" style="width:80px;"></td>
+		<td><input type="text" id="result" style="width:80px;"></td>
+	</tr>
+	</table>
+</div>
+ 
+ 
+ <div>
+ 	<form>
+ 		<table style="width:200px;">
+ 			<tr>
+ 				<th>이름</th>
+ 				<td>
+ 					<input type="text" id="name" class="txtName" style="width:80px;">
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>국어점수</th>
+ 				<td style="text-align: right;">
+ 					<input type="text" id="kor" class="txtScore" style="width:80px;">
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>영어점수</th>
+ 				<td style="text-align: right;">
+ 					<input type="text" id="eng" class="txtScore" style="width:80px;">
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<th>수학점수</th>
+ 				<td style="text-align: right;">
+ 					<input type="text" id="mat" class="txtScore" style="width:80px;">
+ 				</td>
+ 			</tr>
+ 			
+ 			<tr>
+ 				<td colspan="2">
+ 					<input type="button" class="btn" value="처리결과 확인"
+ 					 style="width:100%;">
+ 				</td>
+ 			</tr>
+ 			
+ 			<tr style="height: 20px;">
+ 			</tr>
+ 			
+ 			<tr>
+ 				<th>평균점수</th><th>판정결과</th>
+ 			</tr>
+ 			
+ 			<tr>
+ 				<td>
+ 					<input type="text" id="avg" class="txt"
+ 					 style="width: 100px; text-align: center;" disabled="disabled">
+ 				</td>
+ 				<td>
+ 					<input type="text" id="pan" class="txt"
+ 					 style="width: 100px; text-align: center;" disabled="disabled">
+ 				</td> 			
+ 		</table>
+ 	</form>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+</html>

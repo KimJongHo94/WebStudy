@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test032.html</title>
+<style type="text/css">
+	* {font-size: small;}
+</style>
+
+<script type="text/javascript">
+
+	function myAddr(addr)
+	{
+		//자식창 띄우게...//window.opener ->나를 연 부모 창
+		window.opener.document.getElementById("addr1").value = addr;
+		//현재 Test031.HTML의 doc 오픈한 브라우저창
+		//Test031.HTML의 오픈한 브라우저창
+		//Test031.HTML의 doc 문서
+		// 그 안의 아이디 addr1를 쓰는 엘리먼트
+		// addr의 value값,거기에 addr를 넣는다.
+		
+		//IE용
+		//window.opener.document.getElementById("txt1").innerText = addr;
+		
+		//CR,FF용
+		window.opener.document.getElementById("txt1").innerHTML = addr;
+		//텍스트박스에 넣을때는 .value, 윈도우창으로 텍스트 추가할 때 .innerHTML
+		
+		window.close();
+	}
+
+
+</script>
+
+</head>
+<body>
+<div>
+	<form>
+		주소 검색 <input> <input type="button" value="검색"><br><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 1가')">		<!-- 자바스크립트에 있는 myAddr()함수를 호출해서 매개변수를 넘기겠다. -->
+		서울 마포구 월드컵북로 1 (1~110번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 11가')">
+		서울 마포구 월드컵북로 11 (111~128번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 13가')">
+		서울 마포구 월드컵북로 13 (129~140번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 21가')">
+		서울 마포구 월드컵북로 21 (141~148번지)</a><br>
+		<a href="javascript:myAddr('서울 마포구 월드컵북로 32가')">
+		서울 마포구 월드컵북로 32 (149~150번지)</a><br>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+	
+	function num_click()
+	{
+		// alert("hi");
+		
+		// 1 ~ 45 난수 발생
+		// var ran = parseInt(Math.random() * 45) + 1;
+		
+		// alert(ran);
+		
+		var str = "";
+		
+		var arr = new Array(6);
+		
+		var num = parseInt(document.getElementById("txtNum").value);
+		var i=1;
+		var max=0;
+		var maxIdx = 0;
+		var temp = 0;
+		
+		do
+		{
+			// 각 배열에 1 ~ 45 난수 넣기
+			for (var n=0; n<arr.length; n++)
+			{
+				arr[n] = parseInt(Math.random() * 45) + 1;
+				
+				// str += arr[n] + " ";
+			}
+			
+			// 오름차순 정렬
+			for (var n=0; n<arr.length; n++)
+			{
+				max = arr[n];
+				maxIdx = n;
+				for(var k=n; k<6; k++) 
+				{
+					if(max < arr[k]) 
+					{
+						max = arr[k];
+						maxIdx = k;
+					}
+				}
+				
+				var temp = arr[n];
+				arr[n] = arr[maxIdx];
+				arr[maxIdx] = temp;
+			}
+			
+			
+			document.getElementById("txtResult").value = str;
+			
+			str += "\n";
+			
+			i++;
+			
+		} while (i <= num)
+	}
+	
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1>로또 생성</h1>
+	<hr>
+</div>
+
+<!-- 
+	로또 번호(1~45)를 중복되지 않은 정수 6개를 생성하여
+	출력해주는 페이지를 구현한다.
+	HTML, CSS, Javascript 를 활용한다.
+	난수 발생 함수를 활용한다.
+	번호순(오름차순)으로 정렬하여 출력할 수 있도록 한다.
+	주문한 장 수 만큼 출력할 수 있도록 한다.
+	
+	페이지 레이아웃
+	----------------------------------------------------
+	로또 [  3  ] 장   <주문하기>
+	
+	결과
+	----------------------------- <textarea>
+	1 5 9 11 22 31
+	3 13 22 24 26 36
+	2 3 22 34 41 42
+	-----------------------------
+	----------------------------------------------------
+ -->
+ 
+<div>
+	로또 <input type="text" id="txtNum" style="width: 65px;">장	<button type="button" class="btn" style="width: 120px;"
+ 	onclick="num_click()">주문하기</button>
+ 	<br><br>
+ 	
+ 	<textarea cols="30" rows="20" id="txtResult" readonly="readonly"></textarea>
+</div>
+
+</body>
+</html>

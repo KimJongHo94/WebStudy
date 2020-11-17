@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test021.html</title>
+<style type="text/css">
+	* {color: #223322;}
+	input:focus {font-family: 나눔고딕코딩; font-weight: bold;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:bover {color: orange;}
+	td {text-align: center;}
+	.txt {text-align: right;}
+	.textarea {font-family: 나눔고딕코딩; font-weight: bold;}
+</style>
+
+<script type="text/javascript">
+/*
+	function check()
+	{		
+		
+			//alert("테스트");
+			
+			while(true)
+			{
+				var num = 0;	
+				
+				++num;
+				
+				var str = prompt("이름 전화번호("+num+") :");
+				
+				
+				
+				if(str.equals("."))
+				{
+					break;
+					--num;
+				}
+				document.getElementById("txt01").value = num;
+				document.getElementById("result").value = str;
+			}
+	}
+*/
+    function addMember()
+	{
+		//alert("테스트");
+		
+		var str="";
+		var arr =new Array();
+		var n = 0;
+		
+		do
+		{
+			//prompt() 대화창을 통해 입력된 값을 변수 str에 담아내기
+			str = prompt("이름 전화번호(" + (n+1) + ") : ");
+			
+			//확인
+			//alert(str);
+			
+			//처음 빈문자로 초기화했기 때문에 null이 들어갈 수 없다..
+			if(str == "" || str=="." || str== " ")
+				break;
+			
+			arr[n] = str;
+			n++;
+			
+			
+		}while(true);
+		
+		// 다 하고 사용자가 그만하겠다는 표시 - 전체 회원수,입력된 데이터 보여주는 단계
+		
+		document.getElementById("txtCount").value = arr.length; 	//배열의 길이를 반환(=회원 수)
+		
+		//자바와 자바스크립트의 배열 다른점..길이를 바꿀수 없었다..자.스 는 배열객체를 생성하겠다..하면 
+		//배열의 길이를 정해진게 아니고 대입할 때마다 길이가 달라짐(자바의 컬렉션 처럼..)
+		
+		document.getElementById("txtResult").value = " 이름		전화번호\n";
+		for(var n=0; n<arr.length; n++)
+		{
+			document.getElementById("txtResult").value += arr[n]+"\n";	
+		}
+	}
+
+</script>
+</head>
+<body>
+
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<!-- 
+	여러 명의 이름과 전화번호를 입력받고
+	그 내용을 전체 출력하는 페이지를 구성한다.
+	
+	HTML,CSS,Javascript 를 활용한다.
+	
+	※ prompt() 를 활용한다.
+	
+	페이지 레이아웃
+	--------------------------------------------
+	< 회원정보 입력 > 						→ 대화 상자 → 이름 전화번호(1) : 박다빈 010-1111-1111
+														 → 이름 전화번호(2) : 정의진 010-2222-2222
+														 → 이름 전화번호(3) : 김종호 010-3333-3333
+														 → 이름 전화번호(4) :  → 입력값이 없거나
+														  							입력값이 공백이거나
+														  							입력값이 .
+	전체 회원 수 : [	] 명
+	------------------------------
+	  이름			전화번호
+	------------------------------
+	박다빈 			010-1111-1111
+ 	정의진 			010-2222-2222
+	김종호 			010-3333-3333	
+	------------------------------
+ -->
+<!-- 
+<div>
+	<button type="button" onclick="check()">회원 정보 입력</button><br>
+	전체 회원 수 : <input type="text" id="txt01" style="width:50px;">명<br><br>
+</div>
+<div>
+	<textarea rows="10" cols="43" id="result" readonly="readonly"></textarea>
+</div>
+ -->
+ <div>
+ 	<form>
+ 		<input type="button" value="회원정보 입력" class="btn" style="width:200px;"
+ 			onclick="addMember()">
+ 			<br><br>
+ 			
+ 			전체 회원 수 : <input type="text" id="txtCount" style="width:50px;">명<br><br>
+			<textarea rows="10" cols="43" id="txtResult" readonly="readonly"></textarea>		
+ 	</form>
+ </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

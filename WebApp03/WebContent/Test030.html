@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test030.html</title>
+
+<style type="text/css">
+	*
+	{
+		color: #223322;
+		font-family: 맑은 고딕;
+	}
+	.btn
+	{
+		width:240px;
+		height: 40px;
+		font-weight:bold;
+		font-size: 20px;
+		border-radius: 10px;
+	}
+	td
+	{
+		background-color: #ddeedd;
+	}
+
+
+</style>
+
+<script type="text/javascript">
+
+	/*select를 다루어 보기 위한 테스트 함수 정의 */
+	function selectTest()
+	{
+		//alert("호출 확인");
+		
+		//첫 번째 방법
+		/*
+		var position = document.getElementById("userPosition").value;
+		alert(position);
+		*/
+		
+		//두 번째 방법
+		/*
+		var positionObj = document.getElementById("userPosition");
+		var positionOptions = positionObj.options;			//배열 형태
+		var positionMsg = "";
+		
+		for(var i=0; i<positionOptions.length; i++)
+		{
+			if(positionOptions[i].selected)
+			{	
+				//select문에서 단일 선택시
+				positionMsg = positionOptions[i].value;
+				break;					//--다중 선택일 경우 사용하지 않음.
+				
+				//다중 선택
+				positionMsg += positionOptions[i].value + " ";
+			}
+		}
+		
+		alert(positionMsg);
+		*/
+		
+		//세 번째 방법
+		var positionObj = document.getElementById("userPosition");
+		
+		//alert(positionObj.selectedIndex);
+		//--==> 부장 → 0,과장 → 1, 대리 → 2, 사원 → 3
+		
+		//alert(positionObj.options[2].value);		
+		//positionObj.options : 배열형태 이기 때문에 인덱스 받을 수 있다.
+		//--==> 대리
+		
+		var positionMsg = (positionObj.options[positionObj.selectedIndex].value);	
+		alert(positionMsg);
+		
+	}
+	
+	//동적으로 테이블에 데이터가 붙으려고 하는 함수 정의
+	function addMember()
+	{
+		//alert("호출");
+		
+		var uName = document.getElementById("userName").value;
+		var uSsn = document.getElementById("userSsn").value;
+		
+		//var uCity = document.getElementById("userCity").value;
+		var uCity = document.getElementById("userCity").value;
+		//var cityObj = document.getElementById("userCity");
+		
+		//alert(cityObj.selectedIndex);
+		//--==> 서울 → 0,대전 → 1, 광주 → 2, 대구 → 3
+		
+		//alert(cityObj.options[cityObj.selectedIndex].value);
+		
+		//var uDepartment = document.getElement("userDepartment").value;
+		var departmentObj = document.getElementById("userDepartment");
+		var uDepartment = departmentObj.options[departmentObj.selectedIndex].value;
+		
+		//var uPosition = document.getElementById("userPosition").value;
+		var positionObj = document.getElementById("userPosition");
+		var uPosition = positionObj.options[positionObj.selectedIndex].value;
+		
+		var uBasicPay = document.getElementById("userBasicPay").value;
+		
+		// 테이블 그리기 ------------------------------------------------------------------
+		
+		//테이블 object가져오기
+		var tableMember = document.getElementById("memberList");
+		
+		//tr 생성
+		var trNode = document.createElement("tr");
+				
+		trNode.appendChild(createTdNode(uName));
+		
+		trNode.appendChild(createTdNode(uSsn));
+		
+		trNode.appendChild(createTdNode(uCity));
+		
+		trNode.appendChild(createTdNode(uDepartment));
+		
+		trNode.appendChild(createTdNode(uPosition));
+		
+		trNode.appendChild(createTdNode(uBasicPay));
+		
+		tableMember.appendChild(trNode);
+
+
+	//--------------------------------------------------------------------테이블 그리기
+	
+	//formClear();
+	
+	//한개의 페이지에 여러 폼을 만들 수 있다.
+	
+	//form에 대한 객체 초기화하는 메소드
+	document.forms[0].reset();
+	
+	document.getElementById("userName").focus();
+	
+	
+	
+	}
+	
+	
+	//동적 테이블 만들 함수 정의
+	function createTdNode(val)	 
+	{
+		var textNode = document.createTextNode(val);	
+		var tdNode = document.createElement("td");		
+																											
+		tdNode.appendChild(textNode);																				
+		return tdNode;									
+	}
+	
+	//안에 있는 컨트롤를 초기화하도록 하는 구성을 더 지켜봐야 한다.!
+	
+	function formClear()
+	{
+		document.getElementById("userName").value = "";
+		document.getElementById("userSsn").value ="";
+		
+		var cityObj = document.getElementById("userCity");
+		cityObj.options[0].selected = true;
+		
+		var departmentObj = document.getElementById("userDepartment");
+		departmentObj.options[0],selected = true;
+		
+		var positionObj = document.getElementById("userPosition");
+		positionObj.options[3].selected = true;
+		
+		document.getElementById("userBasicPay").value = "";
+	}
+	
+
+</script>
+
+</head>
+<body>
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+
+<div>
+	<h2>선택목록(select) 다루기</h2>
+	
+	<form>
+		<table>
+			<tr>
+				<td>이름</td>
+				<td>
+					<!-- <input type="text" id="userName" placeholder="ex)홍길동"> -->
+					<input type="text" id="userName"> 
+				</td>
+			</tr>
+			<tr>
+				<td>주민번호</td>
+				<td>
+					<!-- <input type="text" id="userSsn" placeholder="751212-1234567"> -->
+					<input type="text" id="userSsn">
+				</td>
+			</tr>
+			<tr>
+				<td>지역</td>
+				<td>
+			<!-- <input type="text" id="userCity" placeholder="ex)서울"> -->
+				<select id="userCity">
+					<option value="1123(서울)">서울</option>
+					<option value="2234(대전)">대전</option>
+					<option value="3345(광주)">광주</option>
+					<option value="4456(대구)">대구</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td>부서</td>
+				<td>
+					<!-- <input type="text" id="userDepartment" placeholder="ex)개발부"> -->
+					<select id="userDepartment">
+						<option value="9987(개발부)">개발부</option>
+						<option value="8876(인사부)">인사부</option>
+						<option value="7765(자재부)">자재부</option>
+						<option value="6654(영업부)">영업부</option>
+						<option value="5543(총무부)">총무부</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>직위</td>
+				<td>
+				<!-- <input type="text" id="userPosition" placeholder="ex)부장"> -->
+					<select id="userPosition">
+						<option value="qwer(부장)">부장</option>
+						<option value="asdf(과장)">과장</option>
+						<option value="zxcv(대리)">대리</option>
+						<option value="rtyu(사원)" selected="selected">사원</option>
+									
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>기본급</td>
+				<td>
+				<!-- 	<input type="text" id="userBasicPay" placeholder="ex)3000000"> -->
+					<input type="text" id="userBasicPay">
+				</td>
+			</tr>
+		</table>
+		
+		<!-- <input type="button" value="직원 추가"  class="btn" onclick="selectTest()"> -->
+		<input type="button" value="직원 추가"  class="btn" onclick="addMember()"> 
+		<br>
+		
+		<input type="reset" value="입력 취소" class="btn">
+		
+		<br><br>
+		
+		<table id="memberList">
+			<tr>
+				<td>이름</td>
+				<td>주민번호</td>
+				<td>지역</td>
+				<td>부서</td>
+				<td>직위</td>
+				<td>기본급</td>
+			</tr>	
+		</table>
+	</form>
+
+</div>
+
+</body>
+</html>

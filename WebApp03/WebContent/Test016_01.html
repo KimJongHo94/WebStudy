@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	* { color: #223322; }
+	input { font-family: 나눔고딕코딩; font-weight: bold; }
+	input:focus { background-color: #eeeedd; }
+	input.btn { width: 80px; font-weight: bold; font-family: 맑은 고딕; }
+	input.btn.hover { color: orange; }
+	input.btn.active { color: red; }
+</style>
+
+<script type="text/javascript">
+
+	function actionPerformet()
+	{
+		// alert("함수 호출 확인");
+		
+		var korStr = document.getElementById("kor").value;
+		var nKor = parseInt(korStr);
+		var engStr = document.getElementById("eng").value;
+		var nEng = parseInt(engStr);
+		var matStr = document.getElementById("mat").value;
+		var nMat = parseInt(matStr);
+		
+		var nTot = 0;			// 총점
+		var nAvg = 0;			// 평균
+		var panStr = "";		// 판정결과
+		
+		nTot = nKor + nEng + nMat;
+		nAvg = Math.round(nTot/3);
+		
+		document.getElementById("avg").value = nAvg;
+		
+		if (nKor>=40 && nEng>=40 && nMat>=40 && nAvg>=60)
+			panStr = "합격";
+		else if (nAvg>=60)
+			panStr = "과락";
+		else
+			panStr = "불합격"';
+		
+		document.getElementById("pan").value = panStr;
+	}
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

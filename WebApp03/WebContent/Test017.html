@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test017.html</title>
+<style type="text/css">
+	* {color: #223322;}
+	input:focus {font-family: 나눔고딕코딩; font-weight: bold;}
+	input.btn {width: 90px; font-weight: bold; font-family: 맑은 고딕;}
+	input.btn:bover {color: orange;}
+	td {text-align: center;}
+	.txt {text-align: right;}
+	.textarea {font-family:나눔고딕코딩; font-weight: bold;}
+</style>
+
+<script type="text/javascript">
+
+/* 내 풀이..
+ //변수 선언  - 정수,결과 값 
+ var numStr = document.getElementById("num").value;
+ var vNum = parseInt(numStr);
+ var vResult = 0;
+ var nResult = 0;
+ 
+	//결과값을 구하는 함수
+	function loop_click()
+	{
+		//반복문
+		//정수가 100 이상인지 아닌지 조건 여부	
+		if(vNum < 100)
+		{
+			alert("100보다 작습니다.다시 입력해주세요~!");
+				
+		} else if(nNum%10 != 0)
+		{
+			alert("10의배수가 아닙니다. 다시 입력해주세요~!");
+		}
+		
+		for(int i=1 ; i <= vNum/10; i++)
+		{
+			for(int j=1 ; j<= (vNum/i) ; j++)
+			{
+				vResult = vResult + j;			
+			}	
+		}
+		
+			document.getElementById("").value = vResult;
+		
+	}
+	
+	//출력하는 함수
+	function output_click()
+	{
+		//출력 반복문
+	}
+*/
+
+
+//선생님 풀이
+	function myCalc()
+	{
+	
+		//함수가 호출될 때 
+		document.getElementById("result").value = "";
+		
+		//테스트
+		//alert("테스트 성공~!");
+		
+		var nNum = Number(document.getElementById("num").value);
+		var nSum = 0;
+		
+		if(nNum < 100)
+		{
+			alert(" 입력값은 100 이상만 가능합니다.");
+			return;
+		}
+		
+		for (var n=1; n<=nNum ; n++)
+		{
+			nSum += n;
+			
+			//1
+			if(n%10==0)		//n 이 10의 배수,10의배수일 때마다 출력..but 출력X --값이 넣어지지만 마지막에 result값에 덮어져서..안나옴.
+			{
+				document.getElementById("result").value += "1 ~ " + n + " : " + nSum + "\n";
+			}
+		}
+		//값이 추가되는 것이 아니라 갱신 되어야 함..
+		document.getElementById("result").value += "1 ~ " + nNum + " : " + nSum + "\n";
+	}
+
+</script>
+</head>
+<body>
+<div>
+	<h1>자바스크립트 활용</h1>
+	<hr>
+</div>
+<!-- 
+	1부터 n까지의 합을 계산하되 n은 100이상만 허용하고
+	출력 시 10의 배수가 될 때 마다 중간 합을 출력할 수 있는 페이지를 구성한다.
+	반복문을 확용할 수 있도록 한다.
+	
+	HTML,CSS,Javascript 활용
+	
+	페이지 레이아웃
+	----------------------------------------------------------------------------
+	정수 입력(100 이상) [		] → 조건 유효성
+	
+		< 결과 > < 취소 >
+		-------------------------
+		| 1 ~ 10 : 55			|
+		|  1 ~ 20 : 210			|			
+		|	:					|
+		| ! ~ 100 : 5050		|				
+		-------------------------
+
+	
+	----------------------------------------------------------------------------
+ -->
+ <!-- 
+ <div>
+		<form>
+			<table>
+				<tr>
+					<td>정수 입력(100 이상)</td>
+					<td><input type="text" id="num" style="width:80px;"></td>
+				</tr>		
+			</table>
+		</form>
+</div>
+<div>
+	<form>
+		<table>
+			<tr>
+				<td><input type="button" id="result" class="btn" value="<결과>" onclick="loop_click()""></td>
+				<td><input type="reset" id="cancel" class="btn" value="<취소>"></td>
+			</tr>
+		</table>	
+	</form>
+</div>
+<div>
+	<form>
+		<table>
+			<tr>
+				<td><input type="text"></td>
+			</tr>
+		</table>	
+	</form>
+</div>
+
+-->
+
+<div>
+	<form>
+		<div>
+			정수 입력(100 이상)
+			<input type="text" id="num" class="txt">
+		</div>
+		<br>
+		<div>
+			<input type="button" value="결과"  class="btn" style="width:150px;" 
+			onclick="myCalc()">
+			<input type="button" value="취소"  class="btn" style="width:150px;">
+		</div>
+		<br>
+		<div>
+			<textarea rows="10" cols="43" id="result" readonly="readonly"></textarea>
+		</div>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test012.html</title>
+
+<script type="text/javascript">
+<!--
+	//msg 변수 →  함수 밖에 선언 →  모든 함수에서 접근 가능한 전역 변수
+	var msg = "2020년 11월 10일";
+	//-- 『var』 키워드 사용 여부와 관계없이 전역 변수의 형태로 기능을 수행하는 상황
+
+	function button_onclick1()
+	{
+		//테스트
+		//alert("첫 번째 버튼 클릭");
+		
+		//name 변수 → 함수 내부에 선언 → 이 함수 내부에서 사용하는 지역 변수
+		//var name="박혜인";
+		//-- 『var』키워드 사용
+		
+		//name 변수 → 함수 내부에 선언 → 이 함수 내부에서 사용하는 지역 변수
+		name="강정우";
+		//-- 『var』키워드 생략
+		//이 함수가 실행되는 과정에서는 지역변수로 지낸다.
+		//이 함수가 실행되는 순간(메모리에 적재되는 순간) 지역변수로서 활동을 하는 게 아니다.
+		//==> 상황에 따른 지역/전역 변수
+		
+		document.write("이름 : " + name);
+		alert(msg);
+	}
+	
+	function button_onclick2()
+	{
+		//테스트
+		//alert("두 번째 버튼 클릭");
+		
+		document.write("이름 : " + name);
+		alert(msg);
+	}
+
+	//두 번째에서는 var name="박혜인"인 '박혜인'이 안나옴..이유는 button_onclick1()의 지역변수라서...
+	//두 번째에서는 name="강정우"인 '강정우'이 안나옴..이유는 button_onclick1()의 지역변수라서...
+//-->
+	//주석처리되는 것 같지만 주석처리x,
+	//『<!--』,『//-->』스크립트영역없이 실행시키기 위한..클라이언트가 이 페이지를 어떤 환경을 열지 보장 못받아서.. 이렇게 한다.
+	
+</script>
+
+</head>
+<body>
+
+<noscript>
+
+	자바스크립트가 사용되지 못할 경우 표현되는 영역
+	브라우저에서 스크립트 사용이 비활성화 되어 있거나,
+	스크립트를 지원하지 않는 브라우저일 경우 표현되는 영역으로 활용된다.
+	noscript 엘리먼트는  body영역이나 head영역에서 모두 사용될 수 있지만
+	head 영역 내에서 사용할 경우
+	link/meta/style 요소만 콘텐츠로 포함할 수 있다.
+</noscript>
+
+
+
+
+<input type="button" id="button1" value="Button" onclick="button_onclick1()"><br>
+<input type="button" id="button2" value="Button" onclick="button_onclick2()"><br>
+
+
+
+
+
+
+
+
+</body>
+</html>
