@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+	○ 데이터 송수신 실습 03
+	
+	   - 두 개의 정수와 선택한 연산자를 서버로 전송하여
+	     (Send03.html)
+	     
+	   - 해당 연산에 대한 결과를 받을 수 있는 JSP 페이지를 작성한다.
+	     (Receive03.jsp)
+	     
+	     정수1          연산자           정수2
+	     [xx       ]   [더하기 ▼]     [ yy       ]
+	     
+	     <연산 결과>
+	     
+	   - 연산 결과 버튼 클릭 시
+	     『입력하신 xx 와 yy 의 연산 결과는 zz 입니다.』
+	     라는 내용을 출력하는 JSP 페이지를 작성한다.
+	     (Receive03.jsp)
+	     
+	   - 사용자의 최초 요청 페이지의 주소는
+	     『http://localhost:8090/WebApp06/Send03.html』로 한다.
+	     
+	   - 즉, 두 개의 정수를 서버로 요청하여
+	     합, 차, 곱, 몫(나누기 연산)을 계산하여
+	     결과를 처리하는 JSP 페이지를 작성한다.
+-->
+
+<div>
+	<h1>데이터 송수신 실습 03</h1>
+	<h2>연산 처리</h2>
+	<hr>
+</div>
+<!-- 
+<div>
+	<form action="Receive03.jsp" method="get">
+			
+		<input type="text" name="num1" class="txt" />
+					
+		<select name="op" id="operator">
+			<option value="+">더하기</option>
+			<option value="-">빼기</option>
+			<option value="*">곱하기</option>
+			<option value="/">나누기</option>
+		</select>
+				
+		<input type="text" name="num2" class="txt" />
+			
+				
+		<input type="submit" value="연산 결과" class="btn" style="width: 150px;" />
+		<input type="reset" value="다시 작성" class="btn" style="width: 150px;" />
+				
+	</form>
+</div>
+ -->
+ 
+ 
+<div>
+	<form action="Receive03.jsp" method="get">
+		<table class="table">
+			<tr>
+				<th>정수1</th>
+				<td>
+					<input type="text" name="num1" class="txt" />
+				</td>
+			</tr>
+			
+			<tr>
+				<th>연산</th>
+				<td>
+					<select name="op">
+						<!-- (+ - * /) 문제 발생
+							 http://localhost:8090/WebApp06/Receive04.jsp?num1=10&op=+&num2=20
+							 + -> 문자열 영역 안에서 문자 결합
+						  -->
+						<option value="add">더하기</option>
+						<option value="sub">빼기</option>
+						<option value="mul">곱하기</option>
+						<option value="div">나누기</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>정수2</th>
+				<td>
+					<input type="text" name="num2" class="txt" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="결과 확인" class="btn" style="width: 150px;" />
+					<input type="reset" value="다시 작성" class="btn" style="width: 150px;" />
+				</td>
+			</tr>
+		</table>
+	</form>	
+</div>
+</body>
+</html>

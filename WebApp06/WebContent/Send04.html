@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Send04.html</title>
+<link rel="stylesheet" href="css/main.css" />
+<!-- 
+<style>
+	
+	.checkbox {position: relative;} 
+	.checkbox input[type="checkbox"] 
+	{   /* 실제 체크박스는 화면에서 숨김 */ 
+		position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0 } 
+	.checkbox input[type="checkbox"] + label 
+	{ display: inline-block; position: relative; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } 
+	.checkbox input[type="checkbox"] + label:before 
+	{ /* 가짜 체크박스 */ content: ' '; display: inline-block; width: 21px; /* 체크박스의 너비를 지정 */ height: 21px; /* 체크박스의 높이를 지정 */ line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */ margin: -2px 8px 0 0; text-align: center; vertical-align: middle; background: #fafafa; border: 1px solid #cacece; border-radius : 3px; box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); } 
+	.checkbox input[type="checkbox"] + label:active:before, .checks input[type="checkbox"]:checked + label:active:before 
+	{ box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1); } 
+	.checkbox input[type="checkbox"]:checked + label:before 
+	{ /* 체크박스를 체크했을때 */ content: '\2714'; /* 체크표시 유니코드 사용 */ color: #99a1a7; text-shadow: 1px 1px #fff; background: #e9ecee; border-color: #adb8c0; box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+
+
+	
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+	function check_onclick()
+	{
+		theForm = document.frm1;
+		
+		if(theForm.userId.value=="")
+			alert("아이디를 입력해야 합니다.");
+	}
+
+</script>
+ -->
+ 
+<style>
+	.msg
+	{
+		color: red;
+		font-size: small;
+		display: none;
+	}
+</style> 
+
+<script>
+	
+	/* function test()
+	{
+		alert("호출 확인");
+		
+		// return false;
+		return true;
+	} */
+	
+	function formCheck()
+	{
+		// alert("호출 확인");
+		
+		// 유효성 검사 수행 → 적합 	→ return true;
+		// 유효성 검사 수행 → 부적합	→ return false;
+		
+		var userId = document.getElementById("userId");
+		var userPwd = document.getElementById("userPwd");
+		var userName = document.getElementById("userName");
+		var userTel = document.getElementById("userTel");
+		
+		var idMsg = document.getElementById("idMsg");
+		var pwdMsg = document.getElementById("pwdMsg");
+		var nameMsg = document.getElementById("nameMsg");
+		var telMsg = document.getElementById("telMsg");
+		
+		idMsg.style.display = "none";
+		pwdMsg.style.display = "none";
+		nameMsg.style.display = "none";
+		telMsg.style.display = "none";
+		
+		
+		if (!userId.value)
+		{
+			// alert("아이디 입력");
+			idMsg.style.display = "inline";
+			userId.focus();
+			return false;
+		}
+		
+		if (!userPwd.value)
+		{
+			pwdMsg.style.display = "inline";
+			userPwd.focus();
+			return false;
+		}
+		
+		if (!userName.value)
+		{
+			nameMsg.style.display = "inline";
+			userName.focus();
+			return false;
+		}
+		
+		if (!userTel.value)
+		{
+			telMsg.style.display = "inline";
+			userTel.focus();
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
+</script>
+
+</head>
+<body>
+
+<!-- 
+	○ 데이터 송수신 실습 04
+	
+	   - 회원 가입 요청 및 처리에 대한 과정을 JSP 페이지로 구성한다.
+	   
+	   - 전송 전에 (클라이언트 측에서 작성한 내용을 서버 측에 제출하기 전에)
+	     입력 데이터에 대한 기본적인 검사 과정을 추가한다.
+	     즉, 자바스크립트로 필수 입력 항목에 대한 입력 누락 여부 확인
+	     (Send04.html)
+	     
+	     아이디(*)		[          ]
+	     패스워드(*)    [          ]	패스워드를 입력해야 합니다.
+	     이름(*)        [          ]
+	     전화번호(*)    [          ]	전화번호를 입력해야 합니다.
+	     
+	     성별           ● 여자    ○ 남자
+	     지역           [서울 ▼]
+	     수강과목       □ 자바기초  □ 오라클중급  □ JDBC  □ JSP 심화
+	     
+	     <회원 가입>
+	     
+	   - 회원 가입 버튼 클릭 시
+	     『
+	     아이디   : superman
+	     패스워드 : java006$
+	     이름     : 이준구
+	     전화번호 : 010-1111-1111
+	     
+	     성별     : 여성
+	     지역     : 서울
+	     수강과목 : 오라클중급 JDBC
+	     』
+	     과 같이 처리될 수 있도록 한다.
+	     (Receive04.jsp)
+	     
+	   - 사용자의 최초 요청 페이지의 주소는
+	     『http://localhost:8090/WebApp06/Send04.html』로 한다.
+ -->
+ 
+<div>
+	<h1>데이터 송수신 실습 04</h1>
+	<h2>회원 가입</h2>
+	<hr />
+</div>
+<!-- 
+<div>
+	<form action="Receive04.jsp" method="post" name="from1">
+		<table>
+			<tr>
+				<th>아이디(*)</th>
+				<td>
+					<input type="text" name="userId" class="txt" required/>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>패스워드(*)</th>
+				<td>
+					<input type="password" name="userPwd" class="txt" required/>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>이름(*)</th>
+				<td>
+					<input type="text" name="userName" class="txt" required />
+				</td>
+			</tr>
+			
+			<tr>
+				<th>전화번호(*)</th>
+				<td>
+					<input type="text" name="userTel" class="txt" required />
+				</td>
+			</tr>
+			
+		</table>
+		<br />
+		
+		<div class="btn">
+			<input type="radio" id="gen1" name="gender" value="여성" />
+			<label for="gen1">여성</label>
+			<input type="radio" id="gen2" name="gender" value="남성" />
+			<label for="gen2">남성</label>
+		</div>
+		
+		<div class="city">
+			<select name="sel_city">
+				<option value="city1">서울</option>
+				<option value="city2">경기도</option>
+				<option value="city3">강원도</option>
+				<option value="city4">부산</option>	
+			</select>
+		</div>
+		
+		<div class="checkbox">
+			<input type="checkbox" id="check1" name="check" value="자바기초" />
+			<label for="check1">자바기초</label>
+			<input type="checkbox" id="check2" name="check" value="오라클중급" />
+			<label for="check2">오라클중급</label>
+			<input type="checkbox" id="check3" name="check" value="JDBC" />
+			<label for="check3">JDBC</label>
+			<input type="checkbox" id="check4" name="check" value="JSP 심화" />
+			<label for="check4">JSP 심화</label>
+		</div>
+		
+		<br>
+		<div>
+			<input type="submit" value="회원 가입" style="width: 150px;" onclick="check_onclick()"/>
+		</div>
+		
+		
+	</form>
+</div>
+ -->
+ 
+ 
+<div>
+	<!-- 『onsubmit』 : submit 액션이 발생할 경우 처리 -->
+	<form action="Receive04.jsp" method="post" onsubmit="return formCheck()">
+		<table class="table">
+			<tr>
+				<th>아이디(*)</th>
+				<td>
+					<input type="text" name="userId" id="userId" class="txt" />
+					<span class="msg" id="idMsg">아이디를 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>패스워드(*)</th>
+				<td>
+					<input type="password" name="userPwd" id="userPwd" class="txt" />
+					<span class="msg" id="pwdMsg">패스워드를 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>이름(*)</th>
+				<td>
+					<input type="text" name="userName" id="userName" class="txt" />
+					<span class="msg" id="nameMsg">이름을 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>전화번호(*)</th>
+				<td>
+					<input type="text" name="userTel" id="userTel" class="txt" />
+					<span class="msg" id="telMsg">전화번호를 입력해야 합니다.</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>성별</th>
+				<td>
+					<input type="radio" name="userGender" id="female" value="여자" />
+					<label for="female">여자</label>
+					<input type="radio" name="userGender" id="male" value="남자" />
+					<label for="male">남자</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>지역</th>
+				<td>
+					<select name="userCity" id="userCity">
+						<option value="서울">서울</option>
+						<option value="경기">경기</option>
+						<option value="인천">인천</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>수강과목</th>
+				<td>
+					<input type="checkbox" name="userSubject" id="check1" value="자바기초" />
+					<label for="check1">자바기초</label>
+					<input type="checkbox" name="userSubject" id="check2" value="오라클 중급" />
+					<label for="check2">오라클 중급</label>
+					<input type="checkbox" name="userSubject" id="check3" value="JDBC" />
+					<label for="check3">JDBC</label>
+					<input type="checkbox" name="userSubject" id="check4" value="JSP 심화" />
+					<label for="check4">JSP 심화</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<!-- <input type="submit" value="결과 확인" class="btn" style="width: 150px;" onclick="test()" /> -->
+					<input type="submit" value="결과 확인" class="btn" style="width: 150px;"/>
+					<input type="reset" value="다시 입력" class="btn" style="width: 150px;" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+</body>
+</html>

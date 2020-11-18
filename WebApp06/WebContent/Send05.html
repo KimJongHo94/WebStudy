@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+	function danChange(obj)
+	{
+		// alert(obj);
+		//-- [object HTMLFormElement]
+		
+		// ※ 매개변수로 전달받은 obj 변수에는 form 객체가 저장되어 있다.
+		//    필요에 따라 전송하기 전에 검증 절차를 추가하는 것이 가능하다.
+		obj.submit();
+		//-- form 의 『submit()』 을 통해
+		//   form 객체의 데이터를 서버로 전송하는 것이 가능하다.
+	}
+</script>
+
+</head>
+<body>
+
+<div>
+	<h1></h1>
+	<hr />
+</div>
+
+<!-- 
+	○ 데이터 송수신 실습 05
+	   
+	   - 구구단 결과를 출력하는 JSP 페이지를 구성한다.
+	     (Receive05.jsp)
+	   
+	   - 원하는 단수를 입력받아 결과를 화면에 출력해주는 형태의 페이지로 구성한다.
+	   - 단, submit 버튼 없이 이벤트 처리를 한다.
+	     (Send05.html)
+	     
+	     단 수 선택 [    1단 ▼   ]
+	     
+	   - 단 선택 시
+	     『1 * 1 = 1
+	       1 * 2 = 2
+	       1 * 3 = 3
+	         :
+	       1 * 9 = 9
+	     』
+	     와 같이 처리될 수 있도록 한다.
+	     (Receive05.jsp)
+	     
+	   - 사용자 최초 요청 페이지의 주소는
+	     『http://localhost:8090/WebApp06/Send05.html』로 한다.
+ -->
+ 
+<div>
+	<form action="Receive05.jsp" method="get">
+		단수 선택
+		<select name="dan" id="dan" onchange="danChange(this.form)">
+			<option value="1">1단</option>
+			<option value="2">2단</option>
+			<option value="3">3단</option>
+			<option value="4">4단</option>
+			<option value="5">5단</option>
+			<option value="6">6단</option>
+			<option value="7">7단</option>
+			<option value="8">8단</option>
+			<option value="9">9단</option>
+		</select>
+	</form>
+</div>
+
+</body>
+</html>
